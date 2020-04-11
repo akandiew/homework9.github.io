@@ -96,37 +96,19 @@ async   function    getGHdata({name}) {
 // build READ.ME template // check out last activity for ideas
 function generateHTML(answers) {
     return `
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Hi! My name is ${answers.username}</h1>
-      <p class="lead">I am from ${answers.location}.</p>
-      <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
-      <ul class="list-group">
-        <li class="list-group-item">My GitHub username is ${answers.github}</li>
-        <li class="list-group-item">My project title is: ${answers.pTitle}</li>
-        <li class="list-group-item">Description:  ${answers.pDescription}</li>
-        <li class="list-group-item">Here is the project's Table of Contents:  ${answers.pToc}</li>
-        <li class="list-group-item">Installation Details:  ${answers.iDetails}</li>
-        <li class="list-group-item">User Details:  ${answers.uDetails}</li>
-        <li class="list-group-item">License Details:  ${answers.license}</li>
-        <li class="list-group-item">How to contribute to the project:  ${answers.contribution}</li>
-        <li class="list-group-item">Project testing:  ${answers.testing}</li>
-        <li class="list-group-item">Questions about the project:  ${answers.questions}</li>
-      </ul>
-    </div>
-  </div>
-  </body>
-  </html>`;
-  }
+      # My name is ${answers.username}
+      ## I am from ${answers.location}
+      [My GitHub username is](${answers.github})
+      ## My project title is: ${answers.pTitle}
+      ## Description:  ${answers.pDescription}
+      ## Here is the project's Table of Contents:  * ${answers.pToc}
+      ## Installation Details:  ${answers.iDetails}
+      ## User Details:  ${answers.uDetails}
+      ## License Details:  ${answers.license}
+      ## How to contribute to the project:  ${answers.contribution}
+      ## Project testing:  ${answers.testing}
+      ## Questions about the project:  ${answers.questions}
+`  }
   
   async function writeFileAsync(path, data)   {
       fs.writeFile(path, data, "utf8", (err) => {
@@ -140,9 +122,9 @@ function generateHTML(answers) {
   
       const html = generateHTML(answers);
   
-      await writeFileAsync("index.html", html);
+      await writeFileAsync("README.md", html);
   
-      console.log("Successfully wrote to index.html");
+      console.log("Successfully wrote to README.md");
     } catch(err) {
       console.log(err);
     }
