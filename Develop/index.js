@@ -83,7 +83,7 @@ async function getData() {
     }
 
 }
-// request data from GiHub 
+// request data from GitHub 
 async   function    getGHdata({name}) {
 
     const res = await axios({
@@ -128,10 +128,15 @@ function generateHTML(answers) {
   </html>`;
   }
   
+  async function writeFileAsync(path, data)   {
+      fs.writeFile(path, data, "utf8", (err) => {
+          if (err)  console.error(err);
+      })
+  }
   async function init() {
     console.log("hi")
     try {
-      const answers = await promptUser();
+      const answers = await getData();
   
       const html = generateHTML(answers);
   
